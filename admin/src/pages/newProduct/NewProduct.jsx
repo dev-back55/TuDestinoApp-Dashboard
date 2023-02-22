@@ -10,7 +10,7 @@ import axios from "axios";
 
 const NewProduct = () => {
   const navigate = useNavigate();
-  const BaseUrl = "https://tudestinoapp-production.up.railway.app/api"
+  const BaseUrl = "https://tudestinoapp-api-production.up.railway.app/api"
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   
