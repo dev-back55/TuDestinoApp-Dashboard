@@ -11,7 +11,7 @@ import axios from "axios";
 const EditProduct = () => {
 
   const navigate = useNavigate();
-  const BaseUrl = "https://tudestinoapp-api-production.up.railway.app/api"
+  const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
   //const [files, setFiles] = useState("");
   const [fotos, setFotos] = useState([]);
   const [info, setInfo] = useState({});
@@ -21,7 +21,7 @@ const EditProduct = () => {
    //const [data, setData] = useState([]);
 
    useEffect(() => {
-      axios.get(`${BaseUrl}/products/${productId}`)
+      axios.get(`${BaseUrlApi}/products/${productId}`)
       .then (res => {
         setInfo(res.data);
         setFotos(res.data.image);
@@ -79,7 +79,7 @@ const EditProduct = () => {
         ...info,
       };
       console.log("New Product",newproduct);
-      await axios.patch(`${BaseUrl}/products/${productId}`, newproduct);
+      await axios.patch(`${BaseUrlApi}/products/${productId}`, newproduct);
       // limpio objeto de datos
       setInfo({});
       setFotos([]);

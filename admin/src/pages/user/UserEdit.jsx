@@ -10,14 +10,14 @@ import { useNavigate } from "react-router-dom";
 const Edit = () => {
    const navigate = useNavigate();
    const { userId } = useParams();
-   const BaseUrl = "https://tudestinoapp-api-production.up.railway.app/api"
+   const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
    const [data, setData] = useState({});
    const [info, setInfo] = useState({});
    const [ newstatus, setNewstatus ] = useState("");
    const [ newadmin, setNewadmin ] = useState(""); 
 
    useEffect(() => {
-      axios.get(`${BaseUrl}/users/${userId}`)
+      axios.get(`${BaseUrlApi}/users/${userId}`)
       .then (res => {
         setData(res.data);
         setNewstatus(data.isActive ? "true" : "false");
@@ -43,7 +43,7 @@ const Edit = () => {
       }
       console.log("aNTES AXIOS",newInfo)
          try {
-            await axios.patch(`${BaseUrl}/users/${userId}/`, newInfo)
+            await axios.patch(`${BaseUrlApi}/users/${userId}/`, newInfo)
             .then (res => {
                // limpio objeto de datos
                alert("Datos Actualizados con Exito !!");
@@ -62,7 +62,7 @@ const Edit = () => {
             }
             console.log("antes axios", newInfo)
                try {
-                  await axios.patch(`${BaseUrl}/users/${userId}/`, newInfo)
+                  await axios.patch(`${BaseUrlApi}/users/${userId}/`, newInfo)
                   .then (res => {
                      alert("Datos Actualizados con Exito !!");
                    })
