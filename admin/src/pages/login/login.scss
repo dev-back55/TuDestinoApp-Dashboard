@@ -1,0 +1,55 @@
+.login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7rem;
+
+}
+
+.header {
+  width: 100%;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+
+padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+border-bottom: 1px solid #0071c2;
+}
+
+// .headerimg {
+
+// }
+
+// .headertext {
+
+// }
+
+.lContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.containertitle {
+  margin-bottom: 1rem;
+}
+
+.lInput{
+  height: 30px;
+  padding: 10px;
+}
+
+.lButton {
+  border: none;
+  padding: 10px 20px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.lButton:disabled{
+  background-color: #0071c28c;
+  cursor: not-allowed;
+}

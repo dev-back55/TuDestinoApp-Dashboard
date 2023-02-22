@@ -1,0 +1,31 @@
+.list {
+  display: flex;
+  width: 100%;
+  
+  background: none;
+  background-color: var(--primaryColorSub);
+  .listContainer {
+    flex: 6;
+    margin-top: -100px;
+    margin-top: 0 !important;
+    background-color: var(--primaryColorSub);
+    height: auto;
+    .datatable {
+      background-color: var(--primaryColor);
+      padding: 0;
+      margin: 20px;
+    }
+  }
+}
+.cellWithImg {
+  display: flex;
+  align-items: center;
+
+  .cellImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+}
