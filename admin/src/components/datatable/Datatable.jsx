@@ -2,14 +2,14 @@ import React from 'react';
 import "./datatable.scss";
 import { DataGrid,  gridClasses} from "@mui/x-data-grid";
 //import { grey } from '@mui/material/colors';
-
+import { BaseUrlApi } from "../../config.js";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
 
 const Datatable = ({columns}) => {
-  const BaseUrl = "https://tudestinoapp-production.up.railway.app/api"
+  
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   console.log(path)
@@ -17,7 +17,7 @@ const Datatable = ({columns}) => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-      axios.get(`${BaseUrl}/${path}`)
+      axios.get(`${BaseUrlApi}/${path}`)
       .then (res => {
         console.log("data:", res.data)
         setData(res.data);
@@ -29,7 +29,7 @@ const Datatable = ({columns}) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${BaseUrl}/${path}/${id}`);
+      await axios.delete(`${BaseUrlApi}/${path}/${id}`);
       setData(data.filter((item) => item._id !== id));
     } catch (err) {console.log(err)}
   };

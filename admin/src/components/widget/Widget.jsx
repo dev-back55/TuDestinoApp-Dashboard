@@ -7,11 +7,11 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { BaseUrlApi } from "../../config.js";
 
 const Widget = ({ type }) => {
   let data;
-  const BaseUrl = "https://tudestinoapp-production.up.railway.app/api"
+  
   //temporary
   const amount = 100;
   const diff = 20;
@@ -20,7 +20,7 @@ const Widget = ({ type }) => {
 
   useEffect(() => {
     // axios.get(`${BaseUrl}/users/count/count`)
-    axios.get("http://localhost:5001/api/users/count/count")
+    axios.get(BaseUrlApi + "/users/count/count")
     .then (res => {
       setQtyusers(res.data);
       
