@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Datatable = ({columns}) => {
-  const BaseUrlApi = "https://tudestinoapp-production.up.railway.app/api"
+  const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   console.log(path)

@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const Widget = ({ type }) => {
   let data;
-  const BaseUrlApi = "https://tudestinoapp-production.up.railway.app/api"
+  const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
   //temporary
   const amount = 100;
   const diff = 20;
