@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Edit = () => {
    const navigate = useNavigate();
    const { userId } = useParams();
-   const BaseUrl = "https://tudestinoapp-production.up.railway.app/api"
+   const BaseUrl = "https://tudestinoapp-api-production.up.railway.app/api"
    const [data, setData] = useState({});
    const [info, setInfo] = useState({});
    const [ newstatus, setNewstatus ] = useState("");
