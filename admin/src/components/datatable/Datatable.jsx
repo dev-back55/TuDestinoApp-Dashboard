@@ -2,14 +2,14 @@ import React from 'react';
 import "./datatable.scss";
 import { DataGrid,  gridClasses} from "@mui/x-data-grid";
 //import { grey } from '@mui/material/colors';
-import { BaseUrlApi } from "../../config.js";
+
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
 
 const Datatable = ({columns}) => {
-  
+  const BaseUrlApi = "https://tudestinoapp-production.up.railway.app/api"
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   console.log(path)

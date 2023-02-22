@@ -7,11 +7,10 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { BaseUrlApi } from "../../config.js";
 
 const Widget = ({ type }) => {
   let data;
-  
+  const BaseUrlApi = "https://tudestinoapp-production.up.railway.app/api"
   //temporary
   const amount = 100;
   const diff = 20;
