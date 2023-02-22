@@ -10,7 +10,7 @@ import axios from "axios";
 
 const NewProduct = () => {
   const navigate = useNavigate();
-  const BaseUrl = "https://tudestinoapp-api-production.up.railway.app/api"
+  const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   
@@ -58,7 +58,7 @@ const NewProduct = () => {
         image: list,
       };
       console.log("New Product",newproduct);
-      await axios.post(`${BaseUrl}/products/`, newproduct);
+      await axios.post(`${BaseUrlApi}/products/`, newproduct);
       // limpio objeto de datos
       setInfo({});
       setFiles("");
