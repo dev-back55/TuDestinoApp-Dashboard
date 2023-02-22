@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
 import Logo from "../../img/logo.png";
 
-const BaseUrl ="https://tudestinoapp-production.up.railway.app/api"
+const BaseUrl ="https://tudestinoapp-api-production.up.railway.app/api"
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
