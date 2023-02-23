@@ -11,28 +11,47 @@ import { Link } from 'react-router-dom';
 const Widget = ({ type }) => {
   let data;
   const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
+  //const BaseApi = "http://localhost:5001/api"
   //temporary
-  const amount = 100;
   const diff = 20;
 
   const [qtyusers, setQtyusers] = useState(0)
+  const [qtypayments, setQtypayments] = useState(0)
+  const [totpayments, setTotpayments] = useState([])
 
   useEffect(() => {
     // axios.get(`${BaseUrl}/users/count/count`)
-    axios.get(BaseUrlApi + "/users/count/count")
-    .then (res => {
-      setQtyusers(res.data);
-      
-    })
-    .catch (err => {
-      console.log(err)
-    })
+      axios.get(BaseUrlApi + "/users/count/count")
+      .then (res => {
+        setQtyusers(res.data);
+      }).catch (err => {
+          console.log(err)
+        })
+    // total payments
+      axios.get(BaseUrlApi + "/payment/count/count")
+      .then (res => {
+        setQtypayments(res.data);
+      }).catch (err => {
+          console.log(err)
+        })
+    // Total ventas
+      axios.get(BaseUrlApi + "/payment/sum/totalpayment")
+      .then (res => {
+        setTotpayments(res.data); 
+      })
+      .catch (err => {
+        console.log(err)
+      })
 }, []);
-console.log(qtyusers)
+
+// console.log(qtyusers)
+// console.log(qtypayments)
+// console.log(totpayments[0]?.total)
+
   switch (type) {
     case "user":
       data = {
-        title: "USERS",
+        title: "USUARIOS",
         isMoney: false,
         link: "See all users",
         goto: "/users",
@@ -49,7 +68,7 @@ console.log(qtyusers)
       break;
     case "order":
       data = {
-        title: "ORDERS",
+        title: "RESERVAS",
         isMoney: false,
         link: "View all orders",
         icon: (
@@ -65,7 +84,7 @@ console.log(qtyusers)
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
+        title: "VENTAS",
         isMoney: true,
         link: "View net earnings",
         icon: (
@@ -78,7 +97,7 @@ console.log(qtyusers)
       break;
     case "balance":
       data = {
-        title: "BALANCE",
+        title: "GANANCIAS",
         isMoney: true,
         link: "See details",
         icon: (
@@ -102,7 +121,11 @@ console.log(qtyusers)
         <span className="title">{data.title}</span>
         <span className="counter">
           {/* {data.isMoney && "$"} {amount} */}
-          {data.title === "USERS" && `${qtyusers}`}
+          {data.title === "USUARIOS" && `${qtyusers}`}
+          {data.title === "RESERVAS" && `${qtypayments}`}
+          {data.title === "VENTAS" && `${totpayments[0].total}`}
+          {data.title === "GANANCIAS" && `${(totpayments[0].total*0.20).toFixed(2)}`}
+
         </span>
         <Link to={data.goto}>
         {/* <span className="link">{data.link}</span> */}
@@ -110,10 +133,13 @@ console.log(qtyusers)
         </Link>
       </div>
       <div className="right">
+      {data.title === "GANANCIAS" && 
+
         <div className="percentage positive">
           <KeyboardArrowUpIcon />
           {diff} %
         </div>
+      }
         {data.icon}
       </div>
     </div>
