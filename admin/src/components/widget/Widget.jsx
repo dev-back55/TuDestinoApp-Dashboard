@@ -20,40 +20,34 @@ const Widget = ({ type }) => {
   const [totpayments, setTotpayments] = useState([])
 
   useEffect(() => {
-    // axios.get(`${BaseUrl}/users/count/count`)
-      axios.get(BaseUrlApi + "/users/count/count")
-      .then (res => {
-        setQtyusers(res.data);
-      }).catch (err => {
-          console.log(err)
-        })
-    // total payments
-      axios.get(BaseUrlApi + "/payment/count/count")
-      .then (res => {
-        setQtypayments(res.data);
-      }).catch (err => {
-          console.log(err)
-        })
-    // Total ventas
-      axios.get(BaseUrlApi + "/payment/sum/totalpayment")
-      .then (res => {
-        setTotpayments(res.data); 
-      })
-      .catch (err => {
-        console.log(err)
-      })
+    // total usuarios
+    async function request () {
+      const res = await axios.get(BaseUrlApi + "/users/count/count")
+      const response = await res.data  
+      setQtyusers(response);
+      
+    // total reservas
+      const res2 = await axios.get(BaseUrlApi + "/payment/count/count")
+         setQtypayments(res2.data);
+      
+     // Total ventas
+       const res3 = await axios.get(BaseUrlApi + "/payment/sum/totalpayment")
+         setTotpayments(res3.data); 
+     
+    }
+    request();
 }, []);
 
 // console.log(qtyusers)
 // console.log(qtypayments)
-// console.log(totpayments[0]?.total)
+// console.log(totpayments[0].total)
 
   switch (type) {
     case "user":
       data = {
         title: "USUARIOS",
         isMoney: false,
-        link: "See all users",
+        link: "Ver todos",
         goto: "/users",
         icon: (
           <PersonOutlinedIcon
@@ -70,7 +64,7 @@ const Widget = ({ type }) => {
       data = {
         title: "RESERVAS",
         isMoney: false,
-        link: "View all orders",
+        link: "Ver más",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -86,7 +80,7 @@ const Widget = ({ type }) => {
       data = {
         title: "VENTAS",
         isMoney: true,
-        link: "View net earnings",
+        link: "Ver todas",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -99,7 +93,7 @@ const Widget = ({ type }) => {
       data = {
         title: "GANANCIAS",
         isMoney: true,
-        link: "See details",
+        link: "Ver más",
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"
@@ -120,7 +114,6 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {/* {data.isMoney && "$"} {amount} */}
           {data.title === "USUARIOS" && `${qtyusers}`}
           {data.title === "RESERVAS" && `${qtypayments}`}
           {data.title === "VENTAS" && `${totpayments[0].total}`}

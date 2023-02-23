@@ -12,26 +12,26 @@ const Edit = () => {
    const { userId } = useParams();
    const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
    const [data, setData] = useState({});
-   const [info, setInfo] = useState({});
-   const [ newstatus, setNewstatus ] = useState("");
-   const [ newadmin, setNewadmin ] = useState(""); 
+   //const [info, setInfo] = useState({});
+   //const [ newstatus, setNewstatus ] = useState("");
+   //const [ newadmin, setNewadmin ] = useState(""); 
 
    useEffect(() => {
       axios.get(`${BaseUrlApi}/users/${userId}`)
       .then (res => {
         setData(res.data);
-        setNewstatus(data.isActive ? "true" : "false");
-        setNewadmin(data.isAdmin ? "true" : "false");
+      //   setNewstatus(data.isActive ? "true" : "false");
+      //   setNewadmin(data.isAdmin ? "true" : "false");
       })
       .catch (err => {
         console.log(err)
       })
   }, [userId, data.isActive, data.isAdmin]);
   
-  console.log("Data Admin", data.isAdmin)
-  console.log("Data Active", data.isActive)
-  console.log("New Admin", newadmin)
-  console.log("New Status", newstatus)
+//   console.log("Data Admin", data.isAdmin)
+//   console.log("Data Active", data.isActive)
+//   console.log("New Admin", newadmin)
+//   console.log("New Status", newstatus)
    
      async function handleSelect(e){     
          console.log(e.target.value)
@@ -72,9 +72,8 @@ const Edit = () => {
    async function handleConfirm(e){
       e.preventDefault();
                // limpio objeto de datos
-               setInfo({});
-               setNewstatus("");
-               setNewadmin("");
+               setData({});
+               
          navigate("/users");
             
    }  
