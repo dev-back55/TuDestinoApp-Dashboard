@@ -116,8 +116,9 @@ const Widget = ({ type }) => {
         <span className="counter">
           {data.title === "USUARIOS" && `${qtyusers}`}
           {data.title === "RESERVAS" && `${qtypayments}`}
-          {data.title === "VENTAS" && `${totpayments[0].total}`}
-          {data.title === "GANANCIAS" && `${(totpayments[0].total*0.20).toFixed(2)}`}
+
+          {totpayments[0]?.total !== undefined && (data.title === "VENTAS" && `${totpayments[0]?.total}`)}
+          {totpayments[0]?.total !== undefined && data.title === "GANANCIAS" && `${(totpayments[0]?.total*0.20).toFixed(2)}`}
 
         </span>
         <Link to={data.goto}>
