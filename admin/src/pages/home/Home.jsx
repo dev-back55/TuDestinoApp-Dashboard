@@ -10,6 +10,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
+  const fechaHoy = new Date().toISOString().slice(0, 10); 
   return (
     <div className="home">
       <Sidebar user={user}/>
@@ -26,7 +27,7 @@ const Home = () => {
           <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
         </div>
         <div className="listContainer">
-          <div className="listTitle">Latest Transactions</div>
+          <div className="listTitle">Últimas Reservas - {fechaHoy.split(/[-/]/).reverse().join("-")}</div>
           <Table />
         </div>
       </div>
