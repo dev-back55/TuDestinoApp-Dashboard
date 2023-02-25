@@ -36,21 +36,6 @@ const EditProduct = () => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  // const handleSelect = (e) => {
-  //   const value = Array.from(
-  //     e.target.selectedOptions,
-  //     (option) => option.value
-  //   );
-  //   setRooms(value);
-  // };
-  // const handleStatus = (e) => {
-  //   setFotos([]);
-  //   setFiles(e.target.files);
-  //   console.log("Status fotos:", fotos);
-  //   console.log("Status files:", files);
-
-  // }
-
   const handleCancel = () => {
     setFotos([]);
     setInfo({});  
@@ -60,21 +45,6 @@ const EditProduct = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      // const list = await Promise.all(
-      //   Object.values(files).map(async (file) => {
-      //     const data = new FormData();
-      //     data.append("file", file);
-      //     data.append("upload_preset", "myuploads");
-      //     const uploadRes = await axios.post(
-      //       "https://api.cloudinary.com/v1_1/djdp4cavt/image/upload",
-      //       data
-      //     );
-
-      //     const { url } = uploadRes.data;
-      //     return url;
-      //   })
-      // );
-
       const newproduct = {
         ...info,
       };
@@ -158,7 +128,7 @@ const EditProduct = () => {
               </div> */}
 
               <div className="formInput" >
-                  <label>Título</label>
+                  <label>Producto</label>
                   <input
                     id="title"
                     onChange={handleChange}
