@@ -51,12 +51,13 @@
 
               .itemKey {
                 font-weight: bold;
-                color: gray;
+                color: rgb(85, 83, 83);
                 margin-right: 5px;
               }
 
               .itemValue {
                 font-weight: 300;
+                color: rgb(51, 48, 48);
               }
             }
           }
@@ -77,7 +78,7 @@
 
     .title {
       font-size: 16px;
-      color: lightgray;
+      color: #7451f8;
       margin-bottom: 20px;
     }
   }

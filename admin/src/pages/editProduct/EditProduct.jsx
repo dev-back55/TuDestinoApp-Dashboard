@@ -1,9 +1,9 @@
+import React from "react";
 import "./editProduct.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 //import Navbar from "../../components/navbar/Navbar";
 //import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState, useEffect } from "react";
-//import { productInputs } from "../../formSource";
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import axios from "axios";
@@ -17,9 +17,6 @@ const EditProduct = () => {
   const [info, setInfo] = useState({});
   const { productId } = useParams();
       
-   console.log("Id de Params", productId);
-   //const [data, setData] = useState([]);
-
    useEffect(() => {
       axios.get(`${BaseUrlApi}/products/${productId}`)
       .then (res => {
@@ -34,6 +31,7 @@ const EditProduct = () => {
   
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    console.log(e.target.id," : ", e.target.value)
   };
 
   const handleCancel = () => {
@@ -42,13 +40,36 @@ const EditProduct = () => {
     navigate("/products");
   }
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    try {
-      const newproduct = {
+  async function handleSelect(e){   
+    
+    console.log("handleselect :",e.target.value)
+       
+    const newproduct = {
         ...info,
-      };
-      console.log("New Product",newproduct);
+        isActive: e.target.value,
+    }
+    console.log("aNTES AXIOS",newproduct)
+        try {
+          await axios.patch(`${BaseUrlApi}/products/${productId}/`, newproduct)
+          .then (res => {
+              // limpio objeto de datos
+              alert("Producto Cambio de Estado con Exito !!");
+              setInfo({});
+              setFotos([]);
+              navigate("/products");
+
+            })
+        } catch (err) {console.log(err)}
+  }
+
+  async function handleClick(e){
+    e.preventDefault()
+        
+    const newproduct = {
+      ...info,
+    }
+    console.log("CLICK aNTES AXIOS",newproduct)
+    try {
       await axios.patch(`${BaseUrlApi}/products/${productId}`, newproduct);
       // limpio objeto de datos
       setInfo({});
@@ -212,7 +233,8 @@ const EditProduct = () => {
              
               <div className="formInput">
                 <label>Gym : {info.gym ? "SI" : "NO"}</label>
-                <select id="gym" onChange={handleChange}>
+                <select id="gym"
+                value={info.gym} onChange={handleChange}>
                   <option value={false}>NO</option>
                   <option value={true}>SI</option>
                 </select>
@@ -220,18 +242,30 @@ const EditProduct = () => {
 
               <div className="formInput">
                 <label>Pileta : {info.swimmingPool ? "SI" : "NO"}</label>
-                <select id="swimmingPool" onChange={handleChange}>
+                <select id="swimmingPool"
+                value={info.swimmingPool} onChange={handleChange}>
                   <option value={false}>NO</option>
                   <option value={true}>SI</option>
                 </select>
               </div>
 
+
               <div className="formInput">
                 <label>Tipo Producto : {info.productType}</label>
-                <select id="productType" onChange={handleChange}>
+                <select id="productType" 
+                value={info.productType} onChange={handleChange}>
                   <option value="house">Casa</option>
                   <option value="apartment">Departamento</option>
                   <option value="bedroom">Habitación</option>
+                </select>
+              </div>
+
+              <div className="formInput">
+                <label>Activo : {info.isActive ? "SI" : "NO"}</label>
+                <select id="isActive"
+                  value={info.isActive} onChange={(e) => handleSelect(e)}>
+                  <option value={true}>SI</option>
+                  <option value={false}>NO</option>
                 </select>
               </div>
               

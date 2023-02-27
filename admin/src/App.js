@@ -1,11 +1,10 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
-//import Single from "./pages/single/Single"
 import UserEdit from "./pages/user/UserEdit";
-import New from "./pages/new/New";
+//import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { userInputs } from "./formSource";
+//import { userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -13,13 +12,14 @@ import { AuthContext } from "./context/AuthContext";
 import { productColumns, userColumns } from "./datatablesource";
 import NewProduct from "./pages/newProduct/NewProduct";
 import EditProduct from "./pages/editProduct/EditProduct";
-//import NewRoom from "./pages/newRoom/NewRoom";
+import Single from "./pages/single/Single";
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
 
+  const { user } = useContext(AuthContext);
   const ProtectedRoute = ({ children }) => {
-    const { user } = useContext(AuthContext);
 
     if (!user) {
       return <Navigate to="/login" />;
@@ -38,8 +38,8 @@ function App() {
               <Route path="users">
                 <Route index element={<ProtectedRoute><List columns={userColumns} /></ProtectedRoute>}/>
                 <Route path=":userId" element={<ProtectedRoute><UserEdit /></ProtectedRoute>}/>
-                <Route path="new" element={<ProtectedRoute><New inputs={userInputs} title="Add New User" /></ProtectedRoute>}/>
               </Route>
+              <Route path="profile" element={<ProtectedRoute><Single title="Perfil Usuario" /></ProtectedRoute>}/>
             <Route path="products">
                <Route index element={<ProtectedRoute><List columns={productColumns} /></ProtectedRoute>}/>
                <Route path=":productId" element={<ProtectedRoute><EditProduct /></ProtectedRoute>}/>

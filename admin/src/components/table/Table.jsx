@@ -48,7 +48,7 @@ const List = () => {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.id}>
+            <TableRow key={row._id}>
               
               <TableCell className="tableCell">{row.username}</TableCell>
               <TableCell className="tableCell">
