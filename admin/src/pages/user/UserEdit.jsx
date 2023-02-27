@@ -53,8 +53,6 @@ const Edit = () => {
       }  
 
       async function handleConfirmPromote(e){
-         
-            // setNewadmin(e.target.value)
             
             const newInfo = {
                ...data,
@@ -90,60 +88,65 @@ const Edit = () => {
                 <button className = {style.goBack}>{'< Go Back'}</button>
               </Link>
             </div>
-
-            <div className={style.userinfo}>
-               <h2>Información del Usuario</h2>
-               <div className="cellWithImg">
-                  <img className="cellImg" src={data.image || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"} alt="avatar" />
-                  Nombre: {data.username}
+         <div className="bottom">
+            <div className="left">
+               <div className={style.userinfo}>
+                  <h2>Información del Usuario</h2>
+                  <div className="cellWithImg">
+                     <img className="cellImg" src={data.image || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"} alt="avatar" />
+                     Nombre: {data.username}
+                  </div>
+                  <div>
+                     <span>Email: {data.email}</span>
+                  </div>
+                  <div>
+                     <span>País: {data.country}</span>
+                  </div>
+                  <div>
+               <span>Ciudad: {data.city}</span>
+                  </div>
+                  <div>
+                     <span>Teléfono: {data.phone}</span>
+                  </div>  
                </div>
-               <div>
-                  <span>Email: {data.email}</span>
-               </div>
-               <div>
-                  <span>País: {data.country}</span>
-               </div>
-               <div>
-              <span>Ciudad: {data.city}</span>
-               </div>
-               <div>
-                  <span>Teléfono: {data.phone}</span>
-               </div>  
             </div>
-            <div className={style.useredit}>
-               <div className = { `${data.isAdmin ? style.green : style.red}` }>
-                  <span>ADMIN: {`${data.isAdmin ? "SI" : "NO"}`}</span>
+            <div className="right">
+               <div className={style.useredit}>
+                  <div className = { `${data.isAdmin ? style.green : style.red}` }>
+                     <span>ADMIN: {`${data.isAdmin ? "SI" : "NO"}`}</span>
+                  </div>
+                        <h2>Status</h2>
+                        <div className = { `${data.isActive ? style.green : style.red}` }>
+                           {`${data.isActive ? 'ACTIVE' : 'BANNED'}`}
+                        </div>
+                        <h3>Edit Status</h3>
+                        <div className={style.selectDiv}>
+                              <select name="isActive"
+                                 value={data.isActive}
+                                 onChange={(e) => handleSelect(e)}>
+                                       <option value={true}>ACTIVE</option>
+                                       <option value={false}>BANED</option>
+                              </select>
+                        </div>
+                        {
+                           !data.isAdmin && data.isActive &&
+                           <div className={style.inputDiv}>
+                              <label>PROMOVER A ADMIN</label>
+                              <select id="isAdmin"
+                              value={data.isAdmin}
+                              onChange={(e) => handleConfirmPromote(e)}>
+                                 <option value={false}>NO</option>
+                                 <option value={true}>SI</option>
+                              </select>
+                           </div>
+                        }
+                        <button onClick={handleConfirm}>VOLVER</button>
+               {/* <div className={style.inputDiv}>
+                  <input className={style.input} type="button" value="GUARDAR" onClick={handleConfirm}/>
+               </div> */}
                </div>
-              <h2>Status</h2>
-              <div className = { `${data.isActive ? style.green : style.red}` }>
-                {`${data.isActive ? 'ACTIVE' : 'BANNED'}`}
-              </div>
-              <h3>Edit Status</h3>
-              <div className={style.selectDiv}>
-                  <select name="isActive"
-                     value={data.isActive}
-                     onChange={(e) => handleSelect(e)}>
-                           <option value={true}>ACTIVE</option>
-                           <option value={false}>BANED</option>
-                  </select>
-              </div>
-              {
-               !data.isAdmin && data.isActive &&
-               <div className={style.inputDiv}>
-                  <label>PROMOVER A ADMIN</label>
-                  <select id="isAdmin"
-                  value={data.isAdmin}
-                   onChange={(e) => handleConfirmPromote(e)}>
-                     <option value={false}>NO</option>
-                     <option value={true}>SI</option>
-                  </select>
-               </div>
-              }
-              <button onClick={handleConfirm}>VOLVER</button>
-              {/* <div className={style.inputDiv}>
-                <input className={style.input} type="button" value="GUARDAR" onClick={handleConfirm}/>
-              </div> */}
             </div>    
+         </div>   
         </div>  
       </div>
     </div>

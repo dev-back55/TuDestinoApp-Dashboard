@@ -27,12 +27,12 @@ const Datatable = ({columns}) => {
       })
   }, [path]);
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`${BaseUrlApi}/${path}/${id}`);
-      setData(data.filter((item) => item._id !== id));
-    } catch (err) {console.log(err)}
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await axios.delete(`${BaseUrlApi}/${path}/${id}`);
+  //     setData(data.filter((item) => item._id !== id));
+  //   } catch (err) {console.log(err)}
+  // };
 
   
 
@@ -47,7 +47,7 @@ const Datatable = ({columns}) => {
             <Link to={`/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">Editar</div>
             </Link>
-            {
+            {/* {
               path === "products" ?
                 <div
                   className="deleteButton"
@@ -56,7 +56,7 @@ const Datatable = ({columns}) => {
                   Borrar
                 </div>
               : null
-            }
+            } */}
           </div>
         );
       },

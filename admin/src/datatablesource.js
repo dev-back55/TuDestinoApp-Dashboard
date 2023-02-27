@@ -85,4 +85,11 @@ export const productColumns = [
   type: "number",
   width: 100,
   },
+  {
+    field: "isActive",
+    headerName: "Activo",
+    type: "boolean",
+    editable: true,
+    width: 100,
+  },
 ];

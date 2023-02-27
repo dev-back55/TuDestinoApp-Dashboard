@@ -92,10 +92,12 @@ const Sidebar = ({user}) => {
             <span>Settings</span>
           </li> */}
           <p className="title">USUARIO</p>
+          <Link to="/profile">
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Perfil</span>
           </li>
+          </Link>
           <li>
             <div className="bottom" onClick={handleClick}>
             <ExitToAppIcon className="icon" />
