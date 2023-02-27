@@ -7,13 +7,15 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import dolar from "../../utils/tools";
+
 
 const Widget = ({ type }) => {
   let data;
   const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
   //const BaseApi = "http://localhost:5001/api"
   //temporary
-  const diff = 20;
+  const diff = 30;
 
   const [qtyusers, setQtyusers] = useState(0)
   const [qtypayments, setQtypayments] = useState(0)
@@ -117,8 +119,8 @@ const Widget = ({ type }) => {
           {data.title === "USUARIOS" && `${qtyusers}`}
           {data.title === "RESERVAS" && `${qtypayments}`}
 
-          {totpayments[0]?.total !== undefined && (data.title === "VENTAS" && `${totpayments[0]?.total}`)}
-          {totpayments[0]?.total !== undefined && data.title === "GANANCIAS" && `${(totpayments[0]?.total*0.20).toFixed(2)}`}
+          {totpayments[0]?.total !== undefined && (data.title === "VENTAS" && `${dolar(totpayments[0]?.total)}`)}
+          {totpayments[0]?.total !== undefined && data.title === "GANANCIAS" && `${(dolar(totpayments[0]?.total*0.30))}`}
 
         </span>
         <Link to={data.goto}>
