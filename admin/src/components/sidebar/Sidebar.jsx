@@ -33,6 +33,7 @@ const Sidebar = ({user}) => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
+        <img src="https://res.cloudinary.com/djdp4cavt/image/upload/v1677519830/my-uploads/LogoIcono_tlmc1f.png" alt="" className="image" />
           <span className="logo">Tu Destino App Admin</span>
         </Link>
       </div>
