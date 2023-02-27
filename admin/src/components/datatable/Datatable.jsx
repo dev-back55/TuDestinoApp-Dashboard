@@ -65,7 +65,7 @@ const Datatable = ({columns}) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Tabla de {path}
+        Tabla de {path === "users" ? "Usuarios" : "Productos"}
         {
           path === "products" ?
           
