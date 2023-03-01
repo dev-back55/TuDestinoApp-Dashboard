@@ -11,12 +11,15 @@ import axios from "axios";
 const Datatable = ({columns}) => {
   const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
   const location = useLocation();
-  const path = location.pathname.split("/")[1];
+  let path = location.pathname.split("/")[1];
   console.log(path)
   
   const [data, setData] = useState([]);
   
   useEffect(() => {
+    if (path === "products") {
+      path = path + "/all/dashboard"
+    }
       axios.get(`${BaseUrlApi}/${path}`)
       .then (res => {
         console.log("data:", res.data)
