@@ -46,11 +46,11 @@ const Navbar = ({user}) => {
             <ListOutlinedIcon className="icon" />
           </div> */}
           <div className="item">
-            <span>{user.username}</span>
+            <span>{user.details.username}</span>
           </div>
           <div className="item">
             <img
-              src={user.image}
+              src={user.details.image}
               alt="foto usuario"
               className="avatar"
             />
