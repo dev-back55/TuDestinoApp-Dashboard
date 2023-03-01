@@ -12,7 +12,8 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Single = () => {
   const { user } = useContext(AuthContext);
-  console.log("Usuario :",user._id)
+   
+  console.log("Usuario :",user.details._id)
    const BaseUrlApi = "https://tudestinoapp-api-production.up.railway.app/api"
    const [data, setData] = useState({});
 
@@ -36,27 +37,27 @@ const Single = () => {
             <h1 className="title">Perfil Usuario</h1>
             <div className="item">
               <img
-                src={user.image ? user.image : "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"}
+                src={user.details.image ? user.details.image : "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">{user.username}</h1>
+                <h1 className="itemTitle">{user.details.username}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
-                  <span className="itemValue">{user.email}</span>
+                  <span className="itemValue">{user.details.email}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Telefono:</span>
-                  <span className="itemValue">{user.phone}</span>
+                  <span className="itemValue">{user.details.phone}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">País:</span>
-                  <span className="itemValue">{user.country}</span>
+                  <span className="itemValue">{user.details.country}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Ciudad:</span>
-                  <span className="itemValue">{user.city}</span>
+                  <span className="itemValue">{user.details.city}</span>
                 </div>
               </div>
             </div>

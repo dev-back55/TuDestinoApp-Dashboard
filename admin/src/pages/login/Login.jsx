@@ -2,11 +2,11 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-// import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
 import Logo from "../../img/logo.png";
 
 const BaseUrl ="https://tudestinoapp-api-production.up.railway.app/api"
+
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -28,7 +28,11 @@ const Login = () => {
     try {
       const res = await axios.post(BaseUrl+"/auth/login", credentials);
       if (res.data.isAdmin) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+        const user = {
+          details: res.data.details,
+          isAdmin: res.data.isAdmin
+        }
+        dispatch({ type: "LOGIN_SUCCESS", payload: user });
 
         navigate("/");
       } else {
